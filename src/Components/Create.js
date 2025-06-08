@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../Constant/Constant';
+import { API_URL } from '../Constant/db';
 
 const Create = () => {
   const [firstName,setFirstName] = useState('')
