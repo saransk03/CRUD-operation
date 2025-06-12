@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../Constant/db';
+import { API_URL } from '../Constant/URL';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
+  const navigate = useNavigate()
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
   const [checked,setChecked] = useState(false)
 
-  const handleSubmit = async () => {
-
-        await axios.post(API_URL, {
+  const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:3001/users", {
           firstName,
           lastName,
           checked
-        });
+        },{ timeout: 5000 });
+          
+        setFirstName('');
+        setLastName('');
+        setChecked(false);
+        navigate('/read')
       }
 
   return (
